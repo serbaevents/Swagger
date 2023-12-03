@@ -43,14 +43,19 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/user"
+              $ref: "#/components/schemas/Pengguna"
       responses:
         "200":
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Response"
+                $ref: "#/components/schemas/RegisterResponse"
+          examples:
+            user_registered:
+              value:
+                status: true
+                message: user berhasil terdaftar
         "405":
           description: Invalid input
 
@@ -65,14 +70,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Auth"
+              $ref: "#/components/schemas/Login"
       responses:
         "200":
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/AuthResponse"
+                $ref: "#/components/schemas/LoginResponse"
+          examples:
+            login_successful:
+              value:
+                status: true
+                message: selamat datang user
+                token: "example_token"
         "405":
           description: Invalid input
 
@@ -87,14 +98,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/bodycord"
+              $ref: "#/components/schemas/Tiket"
       responses:
         "200":
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Response"
+                $ref: "#/components/schemas/InsertDataResponse"
         "405":
           description: Invalid input
       security:
@@ -115,9 +126,17 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/responseUser"
+                $ref: "#/components/schemas/GetDataResponse"
+          examples:
+            get_data_success:
+              value:
+                status: true
+                message: berhasil ambil data
+                data:
+                  TujuanEvent: "Event Coldplay 10"
+                  Jemputan: "Terminal Mangga Sari jakarta timur st.12 jalan soekarno hatta"
+                  Keterangan: "Jam Jemputan 15:00"
+                  Harga: "RP 120.0000"
         "400":
           description: Invalid status value
       security:
@@ -127,95 +146,101 @@ paths:
 
 components:
   schemas:
-    user:
+    Pengguna:
       type: object
       properties:
-        username:
+        NamaLengkap:
           type: string
-          example: sahjatea@gmail.com
-        password:
+          example: Sahijatea
+        TanggalLahir:
           type: string
-          example: sahjatea@gmail.com
-    Response:
+          example: 30/08/2004
+        JenisKelamin:
+          type: string
+          example: Perempuan
+        NomorHP:
+          type: string
+          example: 081234567890
+        Alamat:
+          type: string
+          example: Wastukencana Blok No 32
+        Akun:
+          type: object
+          properties:
+            Email:
+              type: string
+              example: sahjatea@gmail.com
+            Password:
+              type: string
+              example: sahijabandung
+
+    RegisterResponse:
       type: object
       properties:
         status:
-          type: bool
+          type: boolean
           example: true
         message:
           type: string
-          example: Berhasil Input data
-    responseUser:
+          example: user berhasil terdaftar
+
+    Login:
+      type: object
+      properties:
+        Email:
+          type: string
+          example: sahjatea@gmail.com
+        Password:
+          type: string
+          example: sahijabandung
+
+    LoginResponse:
       type: object
       properties:
         status:
-          type: bool
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: selamat datang user
+        token:
+          type: string
+          example: "example_token"
+
+    Tiket:
+      type: object
+      properties:
+        TujuanEvent:
+          type: string
+          example: Event Coldplay 10
+        Jemputan:
+          type: string
+          example: Terminal Mangga Sari jakarta timur st.12 jalan soekarno hatta
+        Keterangan:
+          type: string
+          example: Jam Jemputan 15:00
+        Harga:
+          type: string
+          example: RP 120.0000
+
+    InsertDataResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: successful operation
+
+    GetDataResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
           example: true
         message:
           type: string
           example: berhasil ambil data
         data:
-          type: object
-          properties:
-            username:
-              type: string
-              example: haris
-            password:
-              type: string
-              example: hashed password
-            role:
-              type: string
-              example: user
-    Auth:
-      type: object
-      properties:
-        username:
-          type: string
-          example: sahjatea@gmail.com
-        password:
-          type: string
-          example: sahijabandung
-    bodycord:
-      type: object
-      properties:
-        type:
-          type: string
-          example: polygon
-        name:
-          type: string
-          example: haris
-        volume:
-          type: string
-          example: "1"
-    AuthResponse:
-      type: object
-      properties:
-        status:
-          type: bool
-          example: false
-        message:
-          type: string
-          example: Selamat Datang
-        token:
-          type: string
-          example: haris
-  requestBodies:
-    AuthReq:
-      description: Request Authentication
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/Auth"
-    UserArray:
-      description: List of user object
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              $ref: "#/components/schemas/AuthResponse"
-  securitySchemes:
-    Login:
-      type: apiKey
-      name: Login
-      in: header
+          $ref: "#/components/schemas/Tiket"
