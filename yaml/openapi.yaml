@@ -32,7 +32,7 @@ tags:
       description: Deskripsi dan Kode Program
       url: https://github.com/serbaevents/backendSE
 paths:
-  /register:
+  /signup_pengguna:
     post:
       tags:
         - register
@@ -133,10 +133,10 @@ paths:
                 status: true
                 message: berhasil ambil data
                 data:
-                  TujuanEvent: "Event Coldplay 10"
+                  TujuanEvent: "Event Coldplay 122"
                   Jemputan: "Terminal Mangga Sari jakarta timur st.12 jalan soekarno hatta"
-                  Keterangan: "Jam Jemputan 15:00"
-                  Harga: "RP 120.0000"
+                  Keterangan: "Jam Jemputan 15:00 - jam pulang 18:00 "
+                  Harga: "RP 80.0000"
         "400":
           description: Invalid status value
       security:
@@ -151,28 +151,28 @@ components:
       properties:
         NamaLengkap:
           type: string
-          example: Sahijatea
+          example: mizara
         TanggalLahir:
           type: string
-          example: 30/08/2004
+          example: 30/08/2001
         JenisKelamin:
           type: string
-          example: Perempuan
+          example: laki laki
         NomorHP:
           type: string
           example: 081234567890
         Alamat:
           type: string
-          example: Wastukencana Blok No 32
+          example: purwakarta n0.38
         Akun:
           type: object
           properties:
             Email:
               type: string
-              example: sahjatea@gmail.com
+              example: nizaraaa@gmail.com
             Password:
               type: string
-              example: sahijabandung
+              example: nizar123
 
     RegisterResponse:
       type: object
