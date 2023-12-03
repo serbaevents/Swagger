@@ -5,7 +5,7 @@ info:
     Dokumentasi API untuk Proyek kami
   termsOfService: https://github.com/serbaevents
   contact:
-    email: imyharis@gmail.com
+    email: kholiqnnabdul@gmail.com
   license:
     name: GCF Package
     url: https://pkg.go.dev/github.com/serbaevents/backendSE
@@ -17,11 +17,6 @@ servers:
   - url: https://asia-southeast2-proven-wavelet-401905.cloudfunctions.net
 tags:
   - name: auth
-    description: Authentikasi
-    externalDocs:
-      description: Deskripsi dan Kode Program
-      url: https://github.com/serbaevents/backendSE
-       - name: insert data
     description: Authentikasi
     externalDocs:
       description: Deskripsi dan Kode Program
@@ -58,6 +53,7 @@ paths:
                 $ref: '#/components/schemas/Response'
         '405':
           description: Invalid input
+
   /logintset:
     post:
       tags:
@@ -79,6 +75,7 @@ paths:
                 $ref: '#/components/schemas/AuthResponse'
         '405':
           description: Invalid input
+
   /testinsertb:
     put:
       tags:
@@ -99,18 +96,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/Response'
         '405':
-          description: Invalid input          
+          description: Invalid input
       security:
         - Login:
-          - write:apiKey
-          - read:apiKey
+            - write: apiKey
+            - read: apiKey
 
   /getdataevent:
     get:
       tags:
         - data
       summary: Get Data Serba Events
-      description: Header auth 
+      description: Header auth
       operationId: GetdataEvents
       responses:
         '200':
@@ -125,8 +122,8 @@ paths:
           description: Invalid status value
       security:
         - Login:
-          - write:apiKey
-          - read:apiKey
+            - write: apiKey
+            - read: apiKey
 
 components:
   schemas:
@@ -135,7 +132,7 @@ components:
       properties:
         username:
           type: string
-          example : sahjatea@gmail.com
+          example: sahjatea@gmail.com
         password:
           type: string
           example: sahjatea@gmail.com
@@ -222,5 +219,3 @@ components:
       type: apiKey
       name: Login
       in: header
-
-      
