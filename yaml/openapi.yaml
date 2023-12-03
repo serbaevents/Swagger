@@ -31,6 +31,11 @@ tags:
     externalDocs:
       description: Deskripsi dan Kode Program
       url: https://github.com/serbaevents/backendSE
+  - name: update
+    description: Update Data
+    externalDocs:
+      description: Deskripsi dan Kode Program
+      url: https://github.com/serbaevents/backendSE
 paths:
   /register:
     post:
@@ -88,7 +93,7 @@ paths:
           description: Invalid input
 
   /testinsertb:
-    poat:
+    post:
       tags:
         - data
       summary: Insert Data
@@ -133,12 +138,45 @@ paths:
                 status: true
                 message: berhasil ambil data
                 data:
-                  tujuanEvent: "Event Coldplay 122"
-                  jemputan: "Terminal Mangga Sari jakarta timur st.12 jalan soekarno hatta"
-                  keterangan: "Jam Jemputan 15:00 - jam pulang 18:00 "
-                  harga: "RP 80.0000"
+                  TujuanEvent: "Event Coldplay 10"
+                  Jemputan: "Terminal Mangga Sari jakarta timur st.12 jalan soekarno hatta"
+                  Keterangan: "Jam Jemputan 15:00"
+                  Harga: "RP 120.0000"
         "400":
           description: Invalid status value
+      security:
+        - Login:
+            - write: apiKey
+            - read: apiKey
+
+  /updatepengguna:
+    put:
+      tags:
+        - update
+      summary: Update Pengguna Data
+      description: Update data pengguna
+      operationId: updatePenggunaService
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: ID of the user to be updated
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Pengguna"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UpdatePenggunaResponse"
+        "400":
+          description: Invalid input
       security:
         - Login:
             - write: apiKey
@@ -151,28 +189,28 @@ components:
       properties:
         NamaLengkap:
           type: string
-          example: mizara
+          example: Sahijatea
         TanggalLahir:
           type: string
-          example: 30/08/2001
+          example: 30/08/2004
         JenisKelamin:
           type: string
-          example: laki laki
+          example: Perempuan
         NomorHP:
           type: string
           example: 081234567890
         Alamat:
           type: string
-          example: purwakarta n0.38
+          example: Wastukencana Blok No 32
         Akun:
           type: object
           properties:
             Email:
               type: string
-              example: nizaraaa@gmail.com
+              example: sahjatea@gmail.com
             Password:
               type: string
-              example: nizar123
+              example: sahijabandung
 
     RegisterResponse:
       type: object
@@ -212,16 +250,16 @@ components:
       properties:
         TujuanEvent:
           type: string
-          example: Event Coldplay 123
+          example: Event Coldplay 10
         Jemputan:
           type: string
-          example: Terminal Mangga Sari jakarta timur st.12 jalan jaya
+          example: Terminal Mangga Sari jakarta timur st.12 jalan soekarno hatta
         Keterangan:
           type: string
-          example: Jam Jemputan 15:00 - jam pulan 22:00
+          example: Jam Jemputan 15:00
         Harga:
           type: string
-          example: RP 100.0000
+          example: RP 120.0000
 
     InsertDataResponse:
       type: object
@@ -231,7 +269,7 @@ components:
           example: true
         message:
           type: string
-          example: successful Insert Data
+          example: successful operation
 
     GetDataResponse:
       type: object
@@ -244,3 +282,13 @@ components:
           example: berhasil ambil data
         data:
           $ref: "#/components/schemas/Tiket"
+
+    UpdatePenggunaResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: successful operation
