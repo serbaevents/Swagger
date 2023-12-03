@@ -32,7 +32,7 @@ tags:
       description: Deskripsi dan Kode Program
       url: https://github.com/serbaevents/backendSE
 paths:
-  /signup_pengguna:
+  /register:
     post:
       tags:
         - register
@@ -133,10 +133,10 @@ paths:
                 status: true
                 message: berhasil ambil data
                 data:
-                  TujuanEvent: "Event Coldplay 122"
-                  Jemputan: "Terminal Mangga Sari jakarta timur st.12 jalan soekarno hatta"
-                  Keterangan: "Jam Jemputan 15:00 - jam pulang 18:00 "
-                  Harga: "RP 80.0000"
+                  tujuanEvent: "Event Coldplay 122"
+                  jemputan: "Terminal Mangga Sari jakarta timur st.12 jalan soekarno hatta"
+                  keterangan: "Jam Jemputan 15:00 - jam pulang 18:00 "
+                  harga: "RP 80.0000"
         "400":
           description: Invalid status value
       security:
@@ -212,16 +212,16 @@ components:
       properties:
         TujuanEvent:
           type: string
-          example: Event Coldplay 10
+          example: Event Coldplay 123
         Jemputan:
           type: string
-          example: Terminal Mangga Sari jakarta timur st.12 jalan soekarno hatta
+          example: Terminal Mangga Sari jakarta timur st.12 jalan jaya
         Keterangan:
           type: string
-          example: Jam Jemputan 15:00
+          example: Jam Jemputan 15:00 - jam pulan 22:00
         Harga:
           type: string
-          example: RP 120.0000
+          example: RP 100.0000
 
     InsertDataResponse:
       type: object
@@ -231,7 +231,7 @@ components:
           example: true
         message:
           type: string
-          example: successful operation
+          example: successful Insert Data
 
     GetDataResponse:
       type: object
