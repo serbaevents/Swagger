@@ -43,15 +43,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/user'
+              $ref: "#/components/schemas/user"
       responses:
-        '200':
+        "200":
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Response'
-        '405':
+                $ref: "#/components/schemas/Response"
+        "405":
           description: Invalid input
 
   /logintset:
@@ -65,15 +65,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Auth'
+              $ref: "#/components/schemas/Auth"
       responses:
-        '200':
+        "200":
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthResponse'
-        '405':
+                $ref: "#/components/schemas/AuthResponse"
+        "405":
           description: Invalid input
 
   /testinsertb:
@@ -87,15 +87,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/bodycord'
+              $ref: "#/components/schemas/bodycord"
       responses:
-        '200':
+        "200":
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Response'
-        '405':
+                $ref: "#/components/schemas/Response"
+        "405":
           description: Invalid input
       security:
         - Login:
@@ -110,15 +110,15 @@ paths:
       description: Header auth
       operationId: GetdataEvents
       responses:
-        '200':
+        "200":
           description: successful operation
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/responseUser'
-        '400':
+                  $ref: "#/components/schemas/responseUser"
+        "400":
           description: Invalid status value
       security:
         - Login:
@@ -171,10 +171,10 @@ components:
       properties:
         username:
           type: string
-          example: haris
+          example: sahjatea@gmail.com
         password:
           type: string
-          example: haris
+          example: sahijabandung
     bodycord:
       type: object
       properties:
@@ -205,7 +205,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Auth'
+            $ref: "#/components/schemas/Auth"
     UserArray:
       description: List of user object
       content:
@@ -213,7 +213,7 @@ components:
           schema:
             type: array
             items:
-              $ref: '#/components/schemas/AuthResponse'
+              $ref: "#/components/schemas/AuthResponse"
   securitySchemes:
     Login:
       type: apiKey
