@@ -1,6 +1,6 @@
 import SwaggerUIBundle from 'https://cdn.skypack.dev/swagger-ui-dist/swagger-ui-bundle.js';
 
-export let URLData = "https://raw.githubusercontent.com/gis-geos/swagger/main/yaml/openapi.yaml";
+export let URLData = "https://raw.githubusercontent.com/serbaevents/Swagger/main/yaml/openapi.yaml";
 
 export const UIData = SwaggerUIBundle({
     url: URLData, //Location of Open API spec in the repo
